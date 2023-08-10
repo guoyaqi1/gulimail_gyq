@@ -11,7 +11,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.6</version>
+		<version>2.7.5</version>
 	</parent>
 
 	<properties>
@@ -19,7 +19,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<mybatisplus.version>3.3.1</mybatisplus.version>
-		<mysql.version>8.0.28</mysql.version>
+		<mysql.version>8.0.21</mysql.version>
 		<mssql.version>4.0</mssql.version>
 		<oracle.version>11.2.0.3</oracle.version>
 		<druid.version>1.1.13</druid.version>
@@ -43,14 +43,24 @@
 		<lombok.version>1.18.4</lombok.version>
 
 		<!--wagon plugin 配置-->
-		<service-path>/work/renren</service-path>
-		<pack-name>${project.artifactId}-${project.version}.jar</pack-name>
-		<remote-addr>192.168.1.10:22</remote-addr>
-		<remote-username>root</remote-username>
-		<remote-passwd>123456</remote-passwd>
+<!--		<service-path>/work/renren</service-path>-->
+<!--		<pack-name>${project.artifactId}-${project.version}.jar</pack-name>-->
+<!--		<remote-addr>192.168.1.10:22</remote-addr>-->
+<!--		<remote-username>root</remote-username>-->
+<!--		<remote-passwd>123456</remote-passwd>-->
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.atguigu.gulimail</groupId>
+			<artifactId>gulimail-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.5</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
