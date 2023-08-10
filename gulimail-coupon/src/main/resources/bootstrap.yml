@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: gulimall-coupon
+
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 8c285345-8956-4e84-8caf-e96454b3744d   #命名空间表示  是dev  test pro  此处为pro环境
+        group: PRO_GROUP
+

@@ -21,6 +21,9 @@
         <module>gulimail-product</module>
         <module>gulimail-ware</module>
         <module>gulimail-coupon</module>
+        <module>renren-fast</module>
+        <module>renren-generator</module>
+        <module>gulimail-gateway</module>
     </modules>
 
 </project>

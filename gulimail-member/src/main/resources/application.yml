@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.80.128:3306/gulimall_ums
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  main:
+    allow-circular-references: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  application:
+    name: gulimail-member
+#  jackson:
+#    date-format: yyyy-MM-dd HH:mm:ss
+
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml  #扫描sql的文件
+  global-config:
+    db-config:
+      id-type: auto  #自增主键
+server:
+  port: 8000
