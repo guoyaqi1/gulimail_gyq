@@ -1,5 +1,6 @@
 package com.atguigu.gulimail.ware.entity;
 
+import com.atguigu.gulimail.ware.service.WareOrderTaskService;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -16,7 +17,7 @@ import lombok.Data;
  */
 @Data
 @TableName("wms_ware_order_task")
-public class WareOrderTaskEntity implements Serializable {
+public class WareOrderTaskEntity{
 	private static final long serialVersionUID = 1L;
 
 	/**

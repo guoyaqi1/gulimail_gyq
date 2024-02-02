@@ -54,6 +54,13 @@ public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueDao
             return item;
         }).collect(Collectors.toList());
         this.saveBatch(collect);
+        /*this.baseMapper.delete(new QueryWrapper<ProductAttrValueEntity>().eq("spu_id",spuId));
+
+        List<ProductAttrValueEntity> collect = entities.stream().map(item -> {
+            item.setSpuId(spuId);
+            return item;
+        }).collect(Collectors.toList());
+        this.saveBatch(collect);*/
     }
 
 }

@@ -14,8 +14,8 @@ spring:
         server-addr: 127.0.0.1:8848
   application:
     name: gulimail-ware
-#  jackson:
-#    date-format: yyyy-MM-dd HH:mm:ss
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 
 
 mybatis-plus:
@@ -23,3 +23,7 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+
+logging:
+  level:
+    com.atguigu: debug

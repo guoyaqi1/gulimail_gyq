@@ -116,10 +116,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
                     AttrGroupEntity attrGroupEntity = attrGroupDao.selectById(attrId.getAttrGroupId());
                     attrRespVo.setGroupName(attrGroupEntity.getAttrGroupName());
                 }
-
             }
-
-
             CategoryEntity categoryEntity = categoryDao.selectById(attrEntity.getCatelogId());
             if (categoryEntity != null) {
                 attrRespVo.setCatelogName(categoryEntity.getName());
@@ -213,10 +210,22 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         return (List<AttrEntity>) attrEntities;
     }
 
+
+    /**
+     * 删除对应的属性
+     * @param vos
+     * @return
+     */
     @Override
     public void deleteRelation(AttrGroupRelationVo[] vos) {
         //relationDao.delete(new QueryWrapper<>().eq("attr_id",1L).eq("attr_group_id",1L));
-        //
+
+        /*List<AttrAttrgroupRelationEntity> entities = Arrays.asList(vos).stream().map((item) -> {
+            AttrAttrgroupRelationEntity relationEntity = new AttrAttrgroupRelationEntity();
+            BeanUtils.copyProperties(item, relationEntity);
+            return relationEntity;
+        }).collect(Collectors.toList());
+        relationDao.deleteBatchRelation(entities);*/
         List<AttrAttrgroupRelationEntity> entities = Arrays.asList(vos).stream().map((item) -> {
             AttrAttrgroupRelationEntity relationEntity = new AttrAttrgroupRelationEntity();
             BeanUtils.copyProperties(item, relationEntity);

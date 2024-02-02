@@ -1,14 +1,13 @@
 package com.atguigu.gulimail.ware.controller;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.atguigu.gulimail.ware.vo.FareVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.*;
 
 import com.atguigu.gulimail.ware.entity.WareInfoEntity;
 import com.atguigu.gulimail.ware.service.WareInfoService;
@@ -24,11 +23,22 @@ import com.atguigu.gulimail.common.utils.R;
  * @email leifengyang@gmail.com
  * @date 2019-10-08 09:59:40
  */
+@FeignClient("gulimail-member")
 @RestController
 @RequestMapping("ware/wareinfo")
 public class WareInfoController {
     @Autowired
     private WareInfoService wareInfoService;
+
+//    @Autowired
+//    MemberReceiveAddressService memberReceiveAddressService;
+
+    @GetMapping("/fare")
+    public R getFare(@RequestParam("addrId") Long addrId){
+        FareVo fare = wareInfoService.getFare(addrId);
+        return R.ok().setData(fare);
+
+    }
 
     /**
      * 列表

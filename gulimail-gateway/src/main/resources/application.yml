@@ -32,29 +32,32 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>/?.*),/$\{segment}
 
-        - id: third_party_route
-          uri: lb://gulimail-third-party
+        - id: third_part_route
+          #uri: lb://gulimail-third-part
+          uri: http://localhost:30000
           predicates:
             - Path=/api/thirdparty/**
           filters:
             - RewritePath=/api/thirdparty/(?<segment>/?.*),/$\{segment}
 
         - id: member_route
-          uri: lb://gulimail-member
+          #uri: lb://gulimail-member
+          uri: http://localhost:8000
           predicates:
             - Path=/api/member/**
           filters:
             - RewritePath=/api/(?<segment>/?.*),/$\{segment}
 
         - id: ware_route
-          uri: lb://gulimail-ware
+          #uri: lb://gulimail-ware
+          uri: http://localhost:11000
           predicates:
             - Path=/api/ware/**
           filters:
             - RewritePath=/api/(?<segment>/?.*),/$\{segment}
 
         - id: order_route
-          uri: lb://gulimail-order
+          uri: lb://localhost:9000
           predicates:
             - Path=/api/order/**
           filters:
@@ -69,22 +72,25 @@ spring:
             - RewritePath=/api/(?<segment>/?.*), /renren-fast/$\{segment}
 
         - id: gulimail_host_route
-          uri: lb://gulimail-product
+          #uri: lb://gulimail-product
+          uri: http://localhost:10000
           predicates:
             - Host=gulimail.com,item.gulimail.com
 
         - id: gulimail_search_route
-          uri: lb://gulimail-search
+          #uri: lb://gulimail-search
+          uri: http://localhost:12000
           predicates:
             - Host=search.gulimail.com
 
         - id: gulimail_auth_route
-          uri: lb://gulimail-auth-server
+          #uri: lb://gulimail-auth-server
+          uri: http://localhost:20000
           predicates:
             - Host=auth.gulimail.com
 
         - id: gulimail_cart_route
-          uri: lb://gulimail-cart
+          uri: lb://localhost:30000
           predicates:
             - Host=cart.gulimail.com
 
@@ -102,6 +108,13 @@ spring:
           uri: lb://gulimail-seckill
           predicates:
             - Host=seckill.gulimail.com
+
+        - id: gulimail_coupon_routr
+            uri: lb://gulimail-coupon
+            predicates:
+              - Path=/api/coupon/**
+            filters:
+              - RewritePath=/api/(?<segment>.*),/$\{segment}
 
 
 

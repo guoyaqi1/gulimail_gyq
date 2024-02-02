@@ -1,5 +1,6 @@
 package com.atguigu.gulimail.product.service;
 
+import com.atguigu.gulimail.product.vo.Catelog2Vo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.atguigu.gulimail.common.utils.PageUtils;
 import com.atguigu.gulimail.product.entity.CategoryEntity;
@@ -10,9 +11,9 @@ import java.util.Map;
 /**
  * 商品三级分类
  *
- * @author leifengyang
- * @email leifengyang@gmail.com
- * @date 2019-10-01 21:08:48
+ * @author gyq
+ * @email
+ * @date
  */
 public interface CategoryService extends IService<CategoryEntity> {
 
@@ -33,5 +34,8 @@ public interface CategoryService extends IService<CategoryEntity> {
 
     void updateCascade(CategoryEntity category);
 
+    List<CategoryEntity> getLevel1Categorys();
+
+    Map<String, List<Catelog2Vo>> getCatelogJson();
 }
 

@@ -1,19 +1,21 @@
 package com.atguigu.gulimail.ware.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
+import com.atguigu.gulimail.common.exception.BizCodeEnume;
+import com.atguigu.gulimail.common.exception.NoStockException;
 import com.atguigu.gulimail.ware.service.WareSkuService;
+import com.atguigu.gulimail.ware.vo.SkuHasStockVo;
+import com.atguigu.gulimail.ware.vo.WareSkuLockVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.atguigu.gulimail.ware.entity.WareSkuEntity;
 import com.atguigu.gulimail.common.utils.PageUtils;
 import com.atguigu.gulimail.common.utils.R;
+
 
 
 
@@ -29,6 +31,29 @@ import com.atguigu.gulimail.common.utils.R;
 public class WareSkuController {
     @Autowired
     private WareSkuService wareSkuService;
+
+    @PostMapping("/lock/order")
+    public R orderLockStock(@RequestBody WareSkuLockVo vo){
+        try{
+            Boolean stockResults =  wareSkuService.orderLockStock(vo);
+            return R.ok();
+        }catch (NoStockException e){
+            return R.error(BizCodeEnume.NO_STOCK_EXCEPTION.getCode(),BizCodeEnume.NO_STOCK_EXCEPTION.getMsg());
+        }
+    }
+    /**
+     * 查询sku是否有库存
+     * @return
+     */
+    @PostMapping(value = "/hasStock")
+    public R getSkuHasStock(@RequestBody List<Long> skuIds) {
+
+        //skuId stock
+        List<SkuHasStockVo> vos = wareSkuService.getSkuHasStock(skuIds);
+
+        return R.ok().setData(vos);
+
+    }
 
     /**
      * 列表

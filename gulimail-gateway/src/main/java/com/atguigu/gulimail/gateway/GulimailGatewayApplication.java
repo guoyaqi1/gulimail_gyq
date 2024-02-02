@@ -9,6 +9,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
   开启服务注册发现
   配置nacos注册中心的地址
 * */
+
 @EnableDiscoveryClient
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class GulimailGatewayApplication {

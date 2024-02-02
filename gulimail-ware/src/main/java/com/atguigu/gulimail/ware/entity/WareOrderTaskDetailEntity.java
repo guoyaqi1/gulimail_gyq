@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import jdk.nashorn.internal.objects.annotations.Constructor;
 import lombok.Data;
 
 /**
@@ -40,5 +42,19 @@ public class WareOrderTaskDetailEntity implements Serializable {
 	 * 工作单id
 	 */
 	private Long taskId;
+	/**
+	 * 库存id
+	 */
+	private Long wareId;
+	/**
+	 * 锁定状态
+	 */
+	private Integer lockStatus;
 
+	public WareOrderTaskDetailEntity(Long id, Long skuId, String skuName, Integer skuNum, Long taskId, Long wareId, Integer lockStatus) {
+	}
+
+	public WareOrderTaskDetailEntity() {
+
+	}
 }

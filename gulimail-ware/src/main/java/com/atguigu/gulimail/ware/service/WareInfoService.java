@@ -1,6 +1,7 @@
 package com.atguigu.gulimail.ware.service;
 
 import com.atguigu.gulimail.ware.entity.WareInfoEntity;
+import com.atguigu.gulimail.ware.vo.FareVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.atguigu.gulimail.common.utils.PageUtils;
 
@@ -16,5 +17,7 @@ import java.util.Map;
 public interface WareInfoService extends IService<WareInfoEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    FareVo getFare(Long addrId);
 }
 

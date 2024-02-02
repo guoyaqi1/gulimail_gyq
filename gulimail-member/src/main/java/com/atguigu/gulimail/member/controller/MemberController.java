@@ -3,19 +3,22 @@ package com.atguigu.gulimail.member.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.atguigu.gulimail.common.exception.BizCodeEnume;
+import com.atguigu.gulimail.member.dao.MemberLevelDao;
 import com.atguigu.gulimail.member.entity.MemberEntity;
+import com.atguigu.gulimail.member.exception.PhoneExsitException;
+import com.atguigu.gulimail.member.exception.UsernameExistException;
 import com.atguigu.gulimail.member.feign.CouponFeignService;
 import com.atguigu.gulimail.member.service.MemberService;
+import com.atguigu.gulimail.member.vo.MemberLoginVo;
+import com.atguigu.gulimail.member.vo.MemberRegistVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.atguigu.gulimail.common.utils.PageUtils;
 import com.atguigu.gulimail.common.utils.R;
-
+import com.atguigu.gulimail.member.vo.SocialUser;
+import javax.annotation.Resource;
 
 
 /**
@@ -34,6 +37,8 @@ public class MemberController {
     @Autowired
     CouponFeignService couponFeignService;
 
+
+
     @RequestMapping("/coupons")
     public R test(){
         MemberEntity memberEntity = new MemberEntity();
@@ -41,6 +46,55 @@ public class MemberController {
 
         R membercoupons = couponFeignService.membercoupons();
         return R.ok().put("member",memberEntity).put("coupons",membercoupons.get("coupons"));
+    }
+
+    /**
+     * 登录
+     * @param vo
+     * @return
+     */
+    @PostMapping("/login")
+    public R login(@RequestBody MemberLoginVo vo){
+        MemberEntity entity = memberService.login(vo);
+        if (entity!=null){
+            return R.ok();
+        }else {
+            return R.error(BizCodeEnume.LOGINACCT_PASSWORD_EXCEPTION.getCode(),BizCodeEnume.LOGINACCT_PASSWORD_EXCEPTION.getMsg());
+        }
+
+    }
+
+    @PostMapping(value = "/oauth2/login")
+    public R oauthLogin(@RequestBody SocialUser socialUser) throws Exception {
+
+        MemberEntity memberEntity = memberService.login(socialUser);
+
+        if (memberEntity != null) {
+            return R.ok().setData(memberEntity);
+        } else {
+            return R.error(BizCodeEnume.LOGINACCT_PASSWORD_EXCEPTION.getCode(),BizCodeEnume.LOGINACCT_PASSWORD_EXCEPTION.getMsg());
+        }
+    }
+
+    /**
+     * 注册
+     * @param vo
+     * @return
+     */
+    @PostMapping("/regist")
+    public R regist(@RequestBody MemberRegistVo vo){
+        try{
+            memberService.regist(vo);
+        }catch (PhoneExsitException e){
+            return R.error(BizCodeEnume.PHONE_EXIST_EXCEPTION.getCode(),BizCodeEnume.PHONE_EXIST_EXCEPTION.getMsg());
+
+        }catch (UsernameExistException e){
+            return R.error(BizCodeEnume.USER_EXIST_EXCEPTION.getCode(),BizCodeEnume.USER_EXIST_EXCEPTION.getMsg());
+        }
+
+
+
+        return R.ok();
     }
 
 

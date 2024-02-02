@@ -42,6 +42,11 @@ public class AttrGroupController {
     @Autowired
     AttrAttrgroupRelationService relationService;
 
+    /**
+     * 新增分组与属性相关
+     * @param vos
+     * @return
+     */
     ///product/attrgroup/attr/relation
     @PostMapping("/attr/relation")
     public R addRelation(@RequestBody List<AttrGroupRelationVo> vos){
@@ -64,7 +69,7 @@ public class AttrGroupController {
     ///product/attrgroup/{attrgroupId}/attr/relation
     @GetMapping("/{attrgroupId}/attr/relation")
     public R attrRelation(@PathVariable("attrgroupId") Long attrgroupId){
-        List<AttrEntity> entities =  attrService.getRelationAttr(attrgroupId);
+        List<AttrEntity> entities = attrService.getRelationAttr(attrgroupId);
         return R.ok().put("data",entities);
     }
 
@@ -75,7 +80,7 @@ public class AttrGroupController {
         PageUtils page = attrService.getNoRelationAttr(params,attrgroupId);
         return R.ok().put("page",page);
     }
-
+   //删除关联的属性
     @PostMapping("/attr/relation/delete")
     public R deleteRelation(@RequestBody  AttrGroupRelationVo[] vos){
         attrService.deleteRelation(vos);

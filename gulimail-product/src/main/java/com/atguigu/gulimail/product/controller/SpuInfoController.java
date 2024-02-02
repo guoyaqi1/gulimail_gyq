@@ -5,11 +5,7 @@ import java.util.Map;
 
 import com.atguigu.gulimail.product.vo.SpuSaveVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.atguigu.gulimail.product.entity.SpuInfoEntity;
 import com.atguigu.gulimail.product.service.SpuInfoService;
@@ -31,6 +27,38 @@ public class SpuInfoController {
     @Autowired
     private SpuInfoService spuInfoService;
 
+
+
+    /**
+     * 根据skuId查询spu的信息
+//     * @param skuId
+     * @return
+     */
+    /*@GetMapping(value = "/skuId/{skuId}")
+    public R getSpuInfoBySkuId(@PathVariable("skuId") Long skuId) {
+
+        SpuInfoEntity spuInfoEntity = spuInfoService.getSpuInfoBySkuId(skuId);
+
+        return R.ok().setData(spuInfoEntity);
+    }*/
+
+    //商品上架
+    ///product/spuinfo/{spuId}/up
+    @PostMapping(value = "/{spuId}/up")
+    public R spuUp(@PathVariable("spuId") Long spuId) {
+
+        spuInfoService.up(spuId);
+
+        return R.ok();
+    }
+
+    @GetMapping("/skuId/{id}")
+    public R getSpuInfoBySkuId(@PathVariable("id") Long skuId){
+        SpuInfoEntity entity=spuInfoService.getSpuInfoBySkuId(skuId);
+        return R.ok().setData(entity);
+    }
+
+
     /**
      * 列表
      */
@@ -41,7 +69,6 @@ public class SpuInfoController {
 
         return R.ok().put("page", page);
     }
-
 
     /**
      * 信息
@@ -88,5 +115,6 @@ public class SpuInfoController {
 
         return R.ok();
     }
+
 
 }

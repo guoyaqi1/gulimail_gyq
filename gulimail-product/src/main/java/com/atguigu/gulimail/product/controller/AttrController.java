@@ -35,7 +35,7 @@ public class AttrController {
 
     ///product/attr/info/{attrId}
 
-    // /product/attr/base/listforspu/{spuId}
+    // /product/attr/base/listforspu/{spuId} 获取商品规格属性
     @GetMapping("/base/listforspu/{spuId}")
     public R baseAttrlistforspu(@PathVariable("spuId") Long spuId){
 
@@ -121,7 +121,6 @@ public class AttrController {
     //@RequiresPermissions("product:attr:delete")
     public R delete(@RequestBody Long[] attrIds){
 		attrService.removeByIds(Arrays.asList(attrIds));
-
         return R.ok();
     }
 

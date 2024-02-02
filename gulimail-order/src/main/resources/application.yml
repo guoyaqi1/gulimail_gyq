@@ -14,12 +14,15 @@ spring:
         server-addr: 127.0.0.1:8848
   application:
     name: gulimail-order
-#  jackson:
-#    date-format: yyyy-MM-dd HH:mm:ss
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  rabbitmq:
+    host: localhost
+    port: 5672
 
 
 mybatis-plus:
-  mapper-locations: classpath:/mapper/**/*.xml  #É¨ÃèsqlµÄÎÄ¼þ
+  mapper-locations: classpath:/mapper/**/*.xml  #É¨ï¿½ï¿½sqlï¿½ï¿½ï¿½Ä¼ï¿½
   global-config:
     db-config:
-      id-type: auto  #×ÔÔöÖ÷¼ü
+      id-type: auto  #ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
